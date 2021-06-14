@@ -22,14 +22,22 @@ import java.util.List;
 
 public final class DeathSwap extends JavaPlugin implements CommandExecutor, Listener, TabCompleter {
 
+    private static final List<Team> TEAMS = new ArrayList<>();
     private static DeathSwap plugin;
     private static boolean isDeathSwapOn = false;
     private int time = 300;
     private BukkitTask task;
-    private static final List<Team> TEAMS = new ArrayList<>();
 
     public static DeathSwap getPlugin() {
         return plugin;
+    }
+
+    public static List<Team> getTeams() {
+        return TEAMS;
+    }
+
+    public static boolean isDeathSwapOn() {
+        return isDeathSwapOn;
     }
 
     @Override
@@ -53,7 +61,7 @@ public final class DeathSwap extends JavaPlugin implements CommandExecutor, List
                     Bukkit.broadcastMessage(ChatColor.RED + "" + ChatColor.BOLD + "Swapping in " + timer + (timer == 1 ? " second!" : " seconds!"));
                 }
                 if (timer == 0) {
-                    for (Team team : TEAMS){
+                    for (Team team : TEAMS) {
                         Location loc = team.getPlayer1().getLocation();
                         team.getPlayer1().teleport(team.getPlayer2());
                         team.getPlayer2().teleport(loc);
@@ -72,33 +80,25 @@ public final class DeathSwap extends JavaPlugin implements CommandExecutor, List
         task = null;
     }
 
-    public static List<Team> getTeams() {
-        return TEAMS;
-    }
-
-    public static boolean isDeathSwapOn() {
-        return isDeathSwapOn;
-    }
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) return true;
         Player player = (Player) sender;
-        if (!player.hasPermission("deathswap.use")){
+        if (!player.hasPermission("deathswap.use")) {
             player.sendMessage(ChatColor.RED + "You do not have permission to use this command");
             return true;
         }
         if (args.length == 1) {
-            if (args[0].equals("start")){
-                if (isDeathSwapOn){
+            if (args[0].equals("start")) {
+                if (isDeathSwapOn) {
                     player.sendMessage(ChatColor.RED + "Deathswap is already on");
                 }
                 Bukkit.broadcastMessage(ChatColor.GREEN + "Deathswap has started");
                 start(time);
                 return true;
             }
-            if (args[0].equals("stop")){
-                if (!isDeathSwapOn){
+            if (args[0].equals("stop")) {
+                if (!isDeathSwapOn) {
                     player.sendMessage(ChatColor.RED + "Deathswap is already off");
                     return true;
                 }
@@ -107,13 +107,13 @@ public final class DeathSwap extends JavaPlugin implements CommandExecutor, List
                 return true;
             }
         }
-        if (args.length == 2){
-            if (args[0].equals("time")){
-                try{
+        if (args.length == 2) {
+            if (args[0].equals("time")) {
+                try {
                     int time = Integer.parseInt(args[1]);
                     this.time = time;
                     player.sendMessage(ChatColor.GREEN + "Deathswap time has been set to " + time + " seconds");
-                } catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     player.sendMessage(ChatColor.RED + "Deathswap time can only be a whole number");
                 }
                 return true;
@@ -128,7 +128,7 @@ public final class DeathSwap extends JavaPlugin implements CommandExecutor, List
         Player player = (Player) sender;
         if (!player.hasPermission("deathswap.use")) return null;
         if (args.length > 1) return Arrays.asList("");
-        if (args.length == 1){
+        if (args.length == 1) {
             return Arrays.asList("start", "stop", "time");
         }
         return null;

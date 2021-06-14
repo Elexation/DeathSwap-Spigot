@@ -17,7 +17,7 @@ public class SyncTabCompleter implements TabCompleter {
         Player player = (Player) sender;
         if (!player.hasPermission("deathswap.use")) return null;
         if (args.length > 2) return Arrays.asList("");
-        if (args.length == 1){
+        if (args.length == 1) {
             List<String> complete = new ArrayList<>();
             for (Player online : Bukkit.getOnlinePlayers()) complete.add(online.getName());
             complete.add("accept");

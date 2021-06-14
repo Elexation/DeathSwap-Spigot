@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 public class UnsyncCommand implements CommandExecutor {
 
-    public UnsyncCommand(){
+    public UnsyncCommand() {
         DeathSwap.getPlugin().getCommand("Unsync").setUsage(ChatColor.GOLD + "Usage: /<command>");
     }
 
@@ -19,17 +19,17 @@ public class UnsyncCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) return true;
         Player player = (Player) sender;
-        if (!player.hasPermission("deathswap.use")){
+        if (!player.hasPermission("deathswap.use")) {
             player.sendMessage(ChatColor.RED + "You do not have permission to use this command");
             return true;
         }
         if (args.length > 0) return false;
         Team playerTeam = TeamFunctions.getPlayerTeam(player);
-        if (playerTeam == null){
+        if (playerTeam == null) {
             player.sendMessage(ChatColor.DARK_RED + "You are not synced with a player");
             return true;
         }
-        if (DeathSwap.isDeathSwapOn()){
+        if (DeathSwap.isDeathSwapOn()) {
             player.sendMessage(ChatColor.DARK_RED + "Deathswap is on. Do /deathswap stop then unsync");
             return true;
         }

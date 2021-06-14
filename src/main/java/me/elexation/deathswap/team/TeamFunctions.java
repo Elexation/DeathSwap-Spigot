@@ -5,13 +5,13 @@ import org.bukkit.entity.Player;
 
 public class TeamFunctions {
 
-    public static Team getPlayerTeam(Player player){
+    public static Team getPlayerTeam(Player player) {
         for (Team team : DeathSwap.getTeams())
             if (team.getPlayer1().equals(player) || team.getPlayer2().equals(player)) return team;
         return null;
     }
 
-    public static boolean isPlayerSynced(Player player){
+    public static boolean isPlayerSynced(Player player) {
         for (Team team : DeathSwap.getTeams())
             if (team.getPlayer1().equals(player) || team.getPlayer2().equals(player)) return true;
         return false;
