@@ -1,6 +1,6 @@
 # DeathSwap spigot
 
-DeathSwap plugin recreated with new features
+DeathSwap plugin recreated with new features\n
 [Official spigotmc page](https://www.spigotmc.org/resources/deathswap.93312/)
 
 Support
