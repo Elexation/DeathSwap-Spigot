@@ -8,8 +8,8 @@ permissions:
     description: Allows usage of deathswap
 commands:
   Sync:
-    description: Syncs two players
+    description: Sends a sync request to a player for them to accept it with /sync accept <player>
   Unsync:
     description: Unsyncs two players
   Deathswap:
-    description: Stops or starts deathswap
+    description: Stops/starts deathswap

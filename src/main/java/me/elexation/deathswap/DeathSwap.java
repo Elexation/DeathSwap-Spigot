@@ -58,7 +58,7 @@ public final class DeathSwap extends JavaPlugin implements CommandExecutor, List
 
             public void run() {
                 if (timer <= 10 && timer != 0) {
-                    Bukkit.broadcastMessage(ChatColor.RED + "" + ChatColor.BOLD + "Swapping in " + timer + (timer == 1 ? " second!" : " seconds!"));
+                    sendAllPlayersMessage(ChatColor.RED + "" + ChatColor.BOLD + "Swapping in " + timer + (timer == 1 ? " second!" : " seconds!"));
                 }
                 if (timer == 0) {
                     for (Team team : TEAMS) {
@@ -92,8 +92,13 @@ public final class DeathSwap extends JavaPlugin implements CommandExecutor, List
             if (args[0].equals("start")) {
                 if (isDeathSwapOn) {
                     player.sendMessage(ChatColor.RED + "Deathswap is already on");
+                    return true;
                 }
-                Bukkit.broadcastMessage(ChatColor.GREEN + "Deathswap has started");
+                if (TEAMS.isEmpty()){
+                    player.sendMessage(ChatColor.GOLD + "No players are synced");
+                    return true;
+                }
+                sendAllPlayersMessage(ChatColor.GREEN + "Deathswap has started");
                 start(time);
                 return true;
             }
@@ -102,15 +107,23 @@ public final class DeathSwap extends JavaPlugin implements CommandExecutor, List
                     player.sendMessage(ChatColor.RED + "Deathswap is already off");
                     return true;
                 }
-                Bukkit.broadcastMessage(ChatColor.GREEN + "Deathswap has stopped");
+                sendAllPlayersMessage(ChatColor.GREEN + "Deathswap has stopped");
                 stop();
                 return true;
             }
         }
         if (args.length == 2) {
             if (args[0].equals("time")) {
+                if (isDeathSwapOn()){
+                    player.sendMessage(ChatColor.RED + "Failed: Deathswap is currently on");
+                    return true;
+                }
                 try {
                     int time = Integer.parseInt(args[1]);
+                    if (time < 20){
+                        player.sendMessage(ChatColor.RED + "Time too short");
+                        return true;
+                    }
                     this.time = time;
                     player.sendMessage(ChatColor.GREEN + "Deathswap time has been set to " + time + " seconds");
                 } catch (NumberFormatException e) {
@@ -132,5 +145,9 @@ public final class DeathSwap extends JavaPlugin implements CommandExecutor, List
             return Arrays.asList("start", "stop", "time");
         }
         return null;
+    }
+
+    private void sendAllPlayersMessage(String message){
+        for (Player online : Bukkit.getOnlinePlayers()) online.sendMessage(message);
     }
 }

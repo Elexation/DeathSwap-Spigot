@@ -29,10 +29,6 @@ public class UnsyncCommand implements CommandExecutor {
             player.sendMessage(ChatColor.DARK_RED + "You are not synced with a player");
             return true;
         }
-        if (DeathSwap.isDeathSwapOn()) {
-            player.sendMessage(ChatColor.DARK_RED + "Deathswap is on. Do /deathswap stop then unsync");
-            return true;
-        }
         DeathSwap.getTeams().remove(playerTeam);
         player.sendMessage(ChatColor.GREEN + "You have been unsynced");
         return true;
