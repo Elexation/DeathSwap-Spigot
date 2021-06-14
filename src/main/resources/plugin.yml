@@ -1,0 +1,15 @@
+name: DeathSwap
+version: @version@
+main: me.elexation.deathswap.DeathSwap
+api-version: 1.16
+authors: [ Elexation ]
+permissions:
+  deathswap.use:
+    description: Allows usage of deathswap
+commands:
+  Sync:
+    description: Syncs two players
+  Unsync:
+    description: Unsyncs two players
+  Deathswap:
+    description: Stops or starts deathswap
