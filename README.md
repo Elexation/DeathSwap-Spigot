@@ -1,6 +1,10 @@
 # DeathSwap spigot
  DeathSwap plugin recreated with new features
  
+ Support
+-------
+If you need to report a bug or want to suggest a new feature, you can [open an issue on GitHub](https://github.com/Elexation/DeathSwap-Spigot/issues/new).
+ 
  Building
 --------
 
