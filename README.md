@@ -26,4 +26,4 @@ Each module's jar can be found in `build/libs/` inside each module's directory o
 
 Compatibility
 -------------
-Tested Minecraft Versions: 1.8, 1.9, 1.10, 1.11, 1.12, 1.13, 1.14, 1.15, 1.16
+Tested Minecraft Versions: 1.8, 1.9, 1.10, 1.11, 1.12, 1.13, 1.14, 1.15, 1.16, 1.17
