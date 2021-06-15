@@ -3,6 +3,7 @@ package me.elexation.deathswap;
 import me.elexation.deathswap.commands.SyncCommand;
 import me.elexation.deathswap.commands.UnsyncCommand;
 import me.elexation.deathswap.team.Team;
+import me.elexation.deathswap.team.TeamFunctions;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -11,7 +12,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
@@ -149,5 +152,11 @@ public final class DeathSwap extends JavaPlugin implements CommandExecutor, List
 
     private void sendAllPlayersMessage(String message){
         for (Player online : Bukkit.getOnlinePlayers()) online.sendMessage(message);
+    }
+
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent e){
+        Player player = e.getPlayer();
+        if (TeamFunctions.isPlayerSynced(player)) TEAMS.remove(TeamFunctions.getPlayerTeam(player));
     }
 }
