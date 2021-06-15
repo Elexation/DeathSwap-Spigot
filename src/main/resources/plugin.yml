@@ -1,11 +1,15 @@
 name: DeathSwap
 version: @version@
-main: me.elexation.deathswap.DeathSwap
+main: me.elexation.deathswap.DeathSwaps
 api-version: "1.13"
 authors: [ Elexation ]
 permissions:
   deathswap.use:
-    description: Allows usage of deathswap
+    description: Allows player commands for deathswap
+    default: true
+  deathswap.admin:
+    description: Allows admin commands for deathswap
+    default: op
 commands:
   Sync:
     description: Sends a sync request to a player for them to accept it with /sync accept <player>

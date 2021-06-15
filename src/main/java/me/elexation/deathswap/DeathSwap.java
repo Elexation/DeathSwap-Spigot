@@ -88,7 +88,7 @@ public final class DeathSwap extends JavaPlugin implements CommandExecutor, List
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) return true;
         Player player = (Player) sender;
-        if (!player.hasPermission("deathswap.use")) {
+        if (!player.hasPermission("deathswap.admin")) {
             player.sendMessage(ChatColor.RED + "You do not have permission to use this command");
             return true;
         }
