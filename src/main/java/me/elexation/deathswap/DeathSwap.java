@@ -47,6 +47,7 @@ public final class DeathSwap extends JavaPlugin implements CommandExecutor, List
     public void onEnable() {
         // Plugin startup logic
         plugin = this;
+        getServer().getPluginManager().registerEvents(this, this);
         this.getCommand("Sync").setExecutor(new SyncCommand());
         this.getCommand("Unsync").setExecutor(new UnsyncCommand());
         this.getCommand("Deathswap").setExecutor(this);
