@@ -2,6 +2,8 @@
 
 DeathSwap plugin recreated with new features
 
+[Official spigotmc page](https://www.spigotmc.org/resources/deathswap.93312/)
+
 Support
 -------
 If you need to report a bug or want to suggest a new feature, you
