@@ -12,7 +12,7 @@ can [open an issue on GitHub](https://github.com/Elexation/DeathSwap-Spigot/issu
 Building
 --------
 
-To build EssentialsX, you need JDK 8 or higher installed on your system. Then, run the following command:
+To build DeathSwap, you need JDK 8 or higher installed on your system. Then, run the following command:
 
 ```sh
 ./gradlew build
